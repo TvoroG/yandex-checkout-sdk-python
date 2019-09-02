@@ -143,3 +143,18 @@ class TestReceipt(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             receipt_item.amount = 'invalid amount'
+
+    def test_receipt_customer(self):
+        receipt = Receipt({
+            'customer': {
+                'email': 'foo@bar.egg',
+                'inn': '4815162342',
+            }
+        })
+        self.assertEqual({
+            'customer': {
+                'email': 'foo@bar.egg',
+                'inn': '4815162342',
+            },
+            'email': 'foo@bar.egg',
+        }, dict(receipt))

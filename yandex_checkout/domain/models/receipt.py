@@ -19,7 +19,9 @@ class Receipt(BaseObject):
 
     @customer.setter
     def customer(self, value):
-        if isinstance(value, ReceiptCustomer):
+        if isinstance(value, dict):
+            self.__customer = ReceiptCustomer(value)
+        elif isinstance(value, ReceiptCustomer):
             self.__customer = value
         else:
             raise TypeError('Invalid customer value type')
